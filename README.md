@@ -1,0 +1,1 @@
+Sistema restaurantero Stand Alone para una sola maquina, enfocado al restaurante Gourmet El Manjar
