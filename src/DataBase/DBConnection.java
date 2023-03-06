@@ -25,8 +25,7 @@ public class DBConnection {
     private static String PASSWORD = "";
     private static String DRIVER = "com.mysql.jdbc.Driver";
     
-    private Connection connection;
-    private Statement statement;    
+    private Connection connection;   
 
     /**
      * Connect the database for a petition
@@ -45,7 +44,6 @@ public class DBConnection {
         }
         try{
             connection = DriverManager.getConnection(DATABASE,USER, PASSWORD); //192.168.1.64
-            statement = connection.createStatement();
             System.out.println("BDConnection. Connect -> Connection started");
             return connection;
         } catch (SQLException ex) {
@@ -61,9 +59,9 @@ public class DBConnection {
      *  - 0. The update was successful
      *  - 1. A problem has occurred. Check the exception message
      */
-    public synchronized int Update (String sql){
+    public synchronized int Update (PreparedStatement sql){
         try{
-            statement.executeUpdate(sql);
+            sql.executeUpdate();
         }catch(SQLException e){
              System.out.println("BDConnection. Update = " + e.getMessage());
              return 1;

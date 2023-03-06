@@ -17,6 +17,7 @@ public class UserDto {
     private String name;
     private String phone;
     private String password;
+    private boolean active;
 
     public String getAccount() {
         return account;
@@ -49,5 +50,13 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-   
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
 }
