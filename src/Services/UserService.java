@@ -6,11 +6,14 @@
 package Services;
 
 import DTO.UserDto;
+import DTO.UserRequestDto;
 import DataBase.DBConnection;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @file UserService.java
@@ -21,8 +24,8 @@ import java.sql.SQLException;
 public class UserService {
 
     private static String INSERT_USER = "INSERT INTO user VALUES(?,?,?,?,?)";
-    private static String DELETE_USER = "UPDATE user SET active = ? WHERE id = ?";
-    private static String UPDATE_USER = "UPDATE user SET ";
+    private static String DELETE_USER = "UPDATE user SET active = false WHERE id = ?";
+    private static String UPDATE_USER = "UPDATE user SET nombre = ?, telefono = ?, pass = ?, active = ? WHERE id = ?";
     private static String GET_USER = "SELECT * FROM user";
     
     /**
@@ -33,8 +36,8 @@ public class UserService {
      * 1 = A problem has occurred. Check the exception message
      */
     public int InsertUser(UserDto user){
+        DBConnection dbConnection = new DBConnection();
         try {
-            DBConnection dbConnection = new DBConnection();
             Connection con = dbConnection.Connect();
             PreparedStatement query = con.prepareStatement(INSERT_USER);
             query.setString(1, user.getAccount());
@@ -47,6 +50,7 @@ public class UserService {
             System.out.println("UserService. InsertUser = " + e.getMessage());
             return 1;
         }
+        dbConnection.Close();
         return 0;
     }
     
@@ -57,7 +61,96 @@ public class UserService {
      * 0 = Is succesful
      * 1 = A problem has occurred. Check the exception message
      */
-    public int DeleteUser(String account){<?php`````<?php<?php
+    public int DeleteUser(String account){
+        DBConnection dbConnection = new DBConnection();
+        try{
+            Connection con = dbConnection.Connect();
+            PreparedStatement query = con.prepareStatement(DELETE_USER);
+            query.setString(1, account);
+            dbConnection.Update(query);
+        }catch(Exception e){
+            System.out.println("UserService. DeleteUser = " + e.getMessage());
+            return 1;
+        }
+        dbConnection.Close();
         return 0;
+    }
+    
+    /**
+     * Update the data. The account can't change
+     * @param user. UserDto container
+     * @return The value of the petition. 
+     * 0 = Is succesful
+     * 1 = A problem has occurred. Check the exception message
+     */
+    public int UpdateUser(UserDto user){
+        DBConnection dbConnection = new DBConnection();
+        try{
+            Connection con = dbConnection.Connect();
+            PreparedStatement query = con.prepareStatement(UPDATE_USER);
+            query.setString(1, user.getName());
+            query.setString(2, user.getPhone());
+            query.setString(3, user.getPassword());
+            query.setBoolean(4, user.isActive());
+            query.setString(5, user.getAccount());
+            dbConnection.Update(query);
+        }catch(Exception e){
+            System.out.println("UserService. UpdateUser = " + e.getMessage());
+            return 1;
+        }
+        dbConnection.Close();
+        return 0;
+    }
+    
+    /**
+     * Get the user's data.
+     * @param request. UserRequestDto container
+     * @return List<UserDto>. The data from the database
+     */
+    public List<UserDto> GetUsers(UserRequestDto request){
+        StringBuilder sb = new StringBuilder(GET_USER);
+        String sql = sb.toString();
+        List<UserDto> result= new ArrayList<>();
+        DBConnection dbcon = new DBConnection();
+        try{
+            if(request.isFilters()){
+                sb.append(" WHERE ");
+                
+                if(!request.getAccount().isEmpty()){
+                    sb.append(" id = '" + request.getAccount()+ "' AND");
+                }
+                
+                if(!request.getName().isEmpty()){
+                    sb.append(" nombre LIKE '" + request.getName() + "%' AND");
+                }
+                
+                if(!request.isInactive()){
+                    sb.append(" active = false AND");
+                }
+                
+                sql = sb.toString();
+                sql = sql.substring(0, sql.length()-3);
+            }
+           
+            Connection con = dbcon.Connect();
+            ResultSet res =  dbcon.Query(con.prepareStatement(sql));
+            UserDto user = null;
+            
+            while(res.next()){
+                user = new UserDto();
+                user.setAccount(res.getString(1));
+                user.setName(res.getString(2));
+                user.setPhone(res.getString(3));
+                user.setPassword(res.getString(4));
+                user.setActive(res.getBoolean(5));
+                result.add(user);
+            }
+        }catch(Exception e){
+            System.out.println("UserService. GetUsers = " + e.getMessage());
+            return null;
+        }
+        
+        dbcon.Close();
+        return result;
     }
 }
