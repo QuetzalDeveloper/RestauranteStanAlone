@@ -4,8 +4,7 @@
  */
 package elmanjarcomanda;
 
-import DTO.UserDto;
-import Services.LoginService;
+import Front.LogIn;
 
 /**
  *
@@ -17,11 +16,9 @@ public class ElManjarComanda {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LoginService l = new LoginService();
-        UserDto user = new UserDto();
-        user.setAccount("KS90");
-        user.setPassword("011290");
-        l.Login(user);
+        LogIn li = new LogIn();
+        li.setLocationRelativeTo(null);
+        li.setVisible(true);
     }
     
 }

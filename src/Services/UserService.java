@@ -26,7 +26,7 @@ public class UserService {
     private static String INSERT_USER = "INSERT INTO user VALUES(?,?,?,?,?)";
     private static String DELETE_USER = "UPDATE user SET active = false WHERE id = ?";
     private static String UPDATE_USER = "UPDATE user SET nombre = ?, telefono = ?, pass = ?, active = ? WHERE id = ?";
-    private static String GET_USER = "SELECT * FROM user";
+    private static String GET_USER = "SELECT * FROM user ";
     
     /**
      * Insert a new user
@@ -113,30 +113,29 @@ public class UserService {
         List<UserDto> result= new ArrayList<>();
         DBConnection dbcon = new DBConnection();
         try{
-            if(request.isFilters()){
-                sb.append(" WHERE ");
-                
-                if(!request.getAccount().isEmpty()){
-                    sb.append(" id = '" + request.getAccount()+ "' AND");
-                }
-                
-                if(!request.getName().isEmpty()){
-                    sb.append(" nombre LIKE '" + request.getName() + "%' AND");
-                }
-                
-                if(!request.isInactive()){
-                    sb.append(" active = false AND");
-                }
-                
-                sql = sb.toString();
-                sql = sql.substring(0, sql.length()-3);
+            
+            if(!request.isInactive()){
+                sb.append("WHERE active = 0");
+            }else{
+                sb.append("WHERE (active = 0 OR active = 1)");
             }
-           
+            if(request.isFilters()){                
+                if(request.getAccount() != null){
+                    sb.append(" AND id = '" + request.getAccount()+ "'");
+                }
+                
+                if(request.getName() != null){
+                    sb.append(" AND nombre LIKE '" + request.getName() + "%'");
+                }
+            }
+
+            sql = sb.toString();
+            System.out.println("SQL = " + sql);
             Connection con = dbcon.Connect();
-            ResultSet res =  dbcon.Query(con.prepareStatement(sql));
+            ResultSet res = dbcon.Query(con.prepareStatement(sql));
             UserDto user = null;
             
-            while(res.next()){
+            while (res.next()) {
                 user = new UserDto();
                 user.setAccount(res.getString(1));
                 user.setName(res.getString(2));
@@ -145,7 +144,8 @@ public class UserService {
                 user.setActive(res.getBoolean(5));
                 result.add(user);
             }
-        }catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println("UserService. GetUsers = " + e.getMessage());
             return null;
         }
