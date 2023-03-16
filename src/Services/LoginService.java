@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
  */
 public class LoginService {
     
-    private static String GET_ACCOUNT_PASSWORD = "SELECT * FROM user WHERE id = ? AND active = 0";
+    private static String GET_ACCOUNT_PASSWORD = "SELECT * FROM user WHERE id = ? AND active = 1";
     
     /**
      * Function for the sign in

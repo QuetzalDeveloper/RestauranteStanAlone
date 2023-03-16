@@ -37,8 +37,36 @@ public class UserService {
      */
     public int InsertUser(UserDto user){
         DBConnection dbConnection = new DBConnection();
+        Connection con;
+        StringBuilder sb = new StringBuilder(GET_USER);
+        sb.append("WHERE id = '");
+        boolean edo = false;
+        int value = 1;
+        
         try {
-            Connection con = dbConnection.Connect();
+            while (edo == false) {
+                String sql = sb.toString() + user.getAccount() + "'";
+                System.out.println("SQL = " + sql);
+
+                con = dbConnection.Connect();
+                ResultSet res = dbConnection.Query(con.prepareStatement(sql));
+                
+                if (res.next()) {
+                    sql = user.getAccount() + "" + String.valueOf(value);
+                    user.setAccount(sql);
+                } else {
+                    edo = true;
+                }
+                con.close();
+                value++;
+            }
+        } catch (Exception e) {
+            System.out.println("UserService. InsertUser = " + e.getMessage());
+            return 1;
+        }
+
+        try {
+            con = dbConnection.Connect();
             PreparedStatement query = con.prepareStatement(INSERT_USER);
             query.setString(1, user.getAccount());
             query.setString(2, user.getName());
@@ -115,9 +143,9 @@ public class UserService {
         try{
             
             if(!request.isInactive()){
-                sb.append("WHERE active = 0");
+                sb.append("WHERE active = 1");
             }else{
-                sb.append("WHERE (active = 0 OR active = 1)");
+                sb.append("WHERE (active = 1 OR active = 0)");
             }
             if(request.isFilters()){                
                 if(request.getAccount() != null){

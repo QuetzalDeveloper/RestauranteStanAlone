@@ -23,6 +23,11 @@ public class MessageUser extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public MessageUser(java.awt.Dialog parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

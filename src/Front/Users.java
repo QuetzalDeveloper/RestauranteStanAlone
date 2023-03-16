@@ -51,10 +51,12 @@ public class Users extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Empleado");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -161,6 +163,7 @@ public class Users extends javax.swing.JFrame {
         });
 
         checkInactivos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkInactivos.setForeground(new java.awt.Color(255, 255, 255));
         checkInactivos.setText("Incluir inactivos");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -219,7 +222,11 @@ public class Users extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaUsuarios);
         if (tablaUsuarios.getColumnModel().getColumnCount() > 0) {
             tablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaUsuarios.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tablaUsuarios.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuarios.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tablaUsuarios.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablaUsuarios.getColumnModel().getColumn(4).setPreferredWidth(50);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -271,11 +278,25 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_butttonRegresarActionPerformed
 
     private void buttonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNuevoActionPerformed
-        
+        UserRegister ur = new UserRegister(this, true);
+        ur.InitNewUser();
     }//GEN-LAST:event_buttonNuevoActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        
+        int row = tablaUsuarios.getSelectedRow();
+        if(row >= 0){
+            UserRegister ur = new UserRegister(this, true);
+            UserDto user = new UserDto();
+            user.setAccount(tablaUsuarios.getValueAt(row, 0).toString());
+            user.setName(tablaUsuarios.getValueAt(row, 1).toString());
+            user.setPhone(tablaUsuarios.getValueAt(row, 2).toString());
+            user.setPassword(tablaUsuarios.getValueAt(row, 3).toString());
+            user.setActive(Boolean.parseBoolean(tablaUsuarios.getValueAt(row, 0).toString()));
+            ur.InitUpdateUser(user);
+        }else{
+            MessageDto md = new MessageDto("Cancelado", "Operación cancelada", MESSAGE_WARNING);
+            mu.ShowMessage(md);
+        }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarActionPerformed
@@ -352,6 +373,8 @@ public class Users extends javax.swing.JFrame {
     }
     
     void InitData() {
+        this.dispose();
+        this.setUndecorated(true);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

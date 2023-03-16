@@ -21,6 +21,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GuiUtils {
     
+    /**
+     * Return the Icon for the label sended
+     * @param url
+     * @param label
+     * @return Icon
+     */
     public Icon ImageLabel(String url, JLabel label){
         ImageIcon icon = new ImageIcon(getClass().getResource(url));
         Image escala = icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
@@ -28,14 +34,39 @@ public class GuiUtils {
         return res;
     }
     
+    /**
+     * Finish the application
+     */
     public void AppExit(){
         System.exit(0);
     }
     
+    /**
+     * Clean a JTable
+     * @param table
+     * @return DefaultTableModel
+     */
     public DefaultTableModel ClearTable(JTable table){
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         return model;
     }
 
+    /**
+     * Returns the base text from the first and last names (separated by spaces) for the accountId.
+     * @param string
+     * @return String
+     */
+    public String GenerateBaseAccount(String string){
+        StringBuilder sb = new StringBuilder("");
+        String array[] = string.split(" ");
+        
+        for(var i = 0; i < array.length; i++){
+            char chars[] = array[i].toCharArray();
+            sb.append(chars[0]);
+            sb.append(chars[1]);
+        }
+        
+        return sb.toString();
+    }
 }
