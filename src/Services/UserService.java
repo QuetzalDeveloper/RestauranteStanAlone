@@ -181,4 +181,39 @@ public class UserService {
         dbcon.Close();
         return result;
     }
+
+    /**
+     * Get all the users active
+     * @return 
+     */
+    public List<UserDto> GetUsersActive() {
+        StringBuilder sb = new StringBuilder(GET_USER);
+        sb.append("WHERE active = 1");
+        List<UserDto> result= new ArrayList<>();
+        DBConnection dbcon = new DBConnection();
+        try{
+            System.out.println("SQL = " + sb.toString());
+            Connection con = dbcon.Connect();
+            ResultSet res = dbcon.Query(con.prepareStatement(sb.toString()));
+            UserDto user = null;
+            
+            while (res.next()) {
+                user = new UserDto();
+                user.setAccount(res.getString(1));
+                user.setName(res.getString(2));
+                user.setPhone(res.getString(3));
+                user.setPassword(res.getString(4));
+                user.setActive(res.getBoolean(5));
+                result.add(user);
+            }
+
+        } catch (Exception e) {
+            System.out.println("UserService. GetUsersActive = " + e.getMessage());
+            dbcon.Close();
+            return null;
+        }
+        
+        dbcon.Close();
+        return result;
+    }
 }

@@ -13,6 +13,7 @@ import Services.MenuService;
 import Utils.Validations;
 import java.util.List;
 import static Constants.MessageConstants.MESSAGE_ERROR;
+import Utils.GuiUtils;
 
 /**
  * @file FoodRegister.java
@@ -285,15 +286,13 @@ public class FoodRegister extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void InitNewMenu() {
-        this.dispose();
-        this.setUndecorated(true);
+        GuiUtils gu = new GuiUtils();
         List<TypeFoodDto> type = ms.getTypeFood();
         comboTipo.addItem("Selecciona...");
         for (TypeFoodDto data : type) {
             comboTipo.addItem(data.getNombreTipo());
         }
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        gu.OpenJDialog(this);
     }
     
     public void InitUpdateMenu(MenuDto menu){

@@ -44,7 +44,7 @@ public class DBConnection {
         }
         try{
             connection = DriverManager.getConnection(DATABASE,USER, PASSWORD); //192.168.1.64
-            System.out.println("BDConnection. Connect -> Connection started");
+            //System.out.println("BDConnection. Connect -> Connection started");
             return connection;
         } catch (SQLException ex) {
             System.out.println("BDConnection. Connect -> Connection stopped = " + ex.getMessage());
@@ -94,7 +94,7 @@ public class DBConnection {
     public int Close(){
         try{
             connection.close();
-            System.out.println("BDConnection. CLose -> Connection closed");
+            //System.out.println("BDConnection. Close -> Connection closed");
         }catch(SQLException e){
             System.out.println("BDConnection. Close = " + e.getMessage());
             return 1;

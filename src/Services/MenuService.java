@@ -134,7 +134,7 @@ public class MenuService {
             }
             
             if(request.getMenuNombre() != null){
-                sb.append(" AND name = '" + request.getMenuNombre() + "'");
+                sb.append(" AND name LIKE '" + request.getMenuNombre() + "%'");
             }
             
             if(request.getMenuTipo() > 0 ){

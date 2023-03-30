@@ -374,10 +374,8 @@ public class Users extends javax.swing.JFrame {
     }
     
     void InitData() {
-        this.dispose();
-        this.setUndecorated(true);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        GuiUtils gu = new GuiUtils();
+        gu.OpenJFrame(this);
     }
 
 }

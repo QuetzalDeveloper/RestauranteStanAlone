@@ -133,4 +133,15 @@ public class DatesFormat {
         
         return sb.toString();
     }
+    
+    /**
+     * Generate the actual date in datetime format: yyyy-MM-dd hh:mm:ss
+     * @return String. Datetime yyyy-MM-dd hh:mm:ss
+     */
+    public String getTodayDateTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date = dateFormat.format(new Date());
+        return date;
+    }
+
 }

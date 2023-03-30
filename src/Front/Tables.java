@@ -5,6 +5,13 @@
 
 package Front;
 
+import DTO.TablesDto;
+import Services.TablesService;
+import Utils.GuiUtils;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @file Tables.java
  * @author Diego Hernandez Cote
@@ -12,7 +19,10 @@ package Front;
  * @date 21 mar. 2023
  */
 public class Tables extends javax.swing.JFrame {
-
+    
+    private TablesService st = new TablesService();
+    private List<TablesDto> tables = new ArrayList<>();
+    
     public Tables() {
         initComponents();
     }
@@ -72,25 +82,24 @@ public class Tables extends javax.swing.JFrame {
         label24 = new javax.swing.JLabel();
         panel25 = new javax.swing.JPanel();
         label25 = new javax.swing.JLabel();
+        panel26 = new javax.swing.JPanel();
+        label26 = new javax.swing.JLabel();
         panel27 = new javax.swing.JPanel();
         label27 = new javax.swing.JLabel();
         panel28 = new javax.swing.JPanel();
         label28 = new javax.swing.JLabel();
         panel29 = new javax.swing.JPanel();
         label29 = new javax.swing.JLabel();
-        panel31 = new javax.swing.JPanel();
-        label31 = new javax.swing.JLabel();
-        panel32 = new javax.swing.JPanel();
-        label32 = new javax.swing.JLabel();
+        panel30 = new javax.swing.JPanel();
+        label30 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        labelImagen2 = new javax.swing.JLabel();
+        labelImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1366, 768));
         setMinimumSize(new java.awt.Dimension(1366, 768));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
 
@@ -439,6 +448,11 @@ public class Tables extends javax.swing.JFrame {
         label12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label12.setText("12");
         label12.setToolTipText("");
+        label12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                label12MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel12Layout = new javax.swing.GroupLayout(panel12);
         panel12.setLayout(panel12Layout);
@@ -560,6 +574,11 @@ public class Tables extends javax.swing.JFrame {
         label15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label15.setText("15");
         label15.setToolTipText("");
+        label15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                label15MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel15Layout = new javax.swing.GroupLayout(panel15);
         panel15.setLayout(panel15Layout);
@@ -848,6 +867,36 @@ public class Tables extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        panel26.setBackground(new java.awt.Color(51, 51, 51));
+        panel26.setPreferredSize(new java.awt.Dimension(200, 130));
+        panel26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panel26MousePressed(evt);
+            }
+        });
+
+        label26.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
+        label26.setForeground(new java.awt.Color(255, 255, 255));
+        label26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label26.setText("26");
+
+        javax.swing.GroupLayout panel26Layout = new javax.swing.GroupLayout(panel26);
+        panel26.setLayout(panel26Layout);
+        panel26Layout.setHorizontalGroup(
+            panel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label26, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panel26Layout.setVerticalGroup(
+            panel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         panel27.setBackground(new java.awt.Color(51, 51, 51));
         panel27.setPreferredSize(new java.awt.Dimension(200, 130));
         panel27.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -859,7 +908,7 @@ public class Tables extends javax.swing.JFrame {
         label27.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
         label27.setForeground(new java.awt.Color(255, 255, 255));
         label27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label27.setText("26");
+        label27.setText("27");
 
         javax.swing.GroupLayout panel27Layout = new javax.swing.GroupLayout(panel27);
         panel27.setLayout(panel27Layout);
@@ -889,7 +938,7 @@ public class Tables extends javax.swing.JFrame {
         label28.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
         label28.setForeground(new java.awt.Color(255, 255, 255));
         label28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label28.setText("27");
+        label28.setText("28");
 
         javax.swing.GroupLayout panel28Layout = new javax.swing.GroupLayout(panel28);
         panel28.setLayout(panel28Layout);
@@ -919,7 +968,7 @@ public class Tables extends javax.swing.JFrame {
         label29.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
         label29.setForeground(new java.awt.Color(255, 255, 255));
         label29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label29.setText("25");
+        label29.setText("29");
 
         javax.swing.GroupLayout panel29Layout = new javax.swing.GroupLayout(panel29);
         panel29.setLayout(panel29Layout);
@@ -938,63 +987,33 @@ public class Tables extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel31.setBackground(new java.awt.Color(51, 51, 51));
-        panel31.setPreferredSize(new java.awt.Dimension(200, 130));
-        panel31.addMouseListener(new java.awt.event.MouseAdapter() {
+        panel30.setBackground(new java.awt.Color(51, 51, 51));
+        panel30.setPreferredSize(new java.awt.Dimension(200, 130));
+        panel30.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panel31MousePressed(evt);
+                panel30MousePressed(evt);
             }
         });
 
-        label31.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
-        label31.setForeground(new java.awt.Color(255, 255, 255));
-        label31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label31.setText("29");
+        label30.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
+        label30.setForeground(new java.awt.Color(255, 255, 255));
+        label30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label30.setText("30");
 
-        javax.swing.GroupLayout panel31Layout = new javax.swing.GroupLayout(panel31);
-        panel31.setLayout(panel31Layout);
-        panel31Layout.setHorizontalGroup(
-            panel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel31Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel30Layout = new javax.swing.GroupLayout(panel30);
+        panel30.setLayout(panel30Layout);
+        panel30Layout.setHorizontalGroup(
+            panel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel30Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label31, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addComponent(label30, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        panel31Layout.setVerticalGroup(
-            panel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel31Layout.createSequentialGroup()
+        panel30Layout.setVerticalGroup(
+            panel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel30Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panel32.setBackground(new java.awt.Color(51, 51, 51));
-        panel32.setPreferredSize(new java.awt.Dimension(200, 130));
-        panel32.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panel32MousePressed(evt);
-            }
-        });
-
-        label32.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
-        label32.setForeground(new java.awt.Color(255, 255, 255));
-        label32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label32.setText("30");
-
-        javax.swing.GroupLayout panel32Layout = new javax.swing.GroupLayout(panel32);
-        panel32.setLayout(panel32Layout);
-        panel32Layout.setHorizontalGroup(
-            panel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel32Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label32, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panel32Layout.setVerticalGroup(
-            panel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel32Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1060,15 +1079,15 @@ public class Tables extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(panel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1112,11 +1131,11 @@ public class Tables extends javax.swing.JFrame {
                     .addComponent(panel25, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel26, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                     .addComponent(panel27, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(panel28, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(panel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                     .addComponent(panel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(panel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(panel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                    .addComponent(panel30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                 .addGap(94, 94, 94))
         );
 
@@ -1125,7 +1144,7 @@ public class Tables extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(255, 153, 0));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
-        jButton6.setText("Cerrar sesión");
+        jButton6.setText("Regresar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1137,10 +1156,10 @@ public class Tables extends javax.swing.JFrame {
             }
         });
 
-        labelImagen2.setBackground(new java.awt.Color(255, 255, 255));
-        labelImagen2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        labelImagen2.setForeground(new java.awt.Color(255, 255, 255));
-        labelImagen2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImagen.setBackground(new java.awt.Color(255, 255, 255));
+        labelImagen.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelImagen.setForeground(new java.awt.Color(255, 255, 255));
+        labelImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1149,7 +1168,7 @@ public class Tables extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelImagen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1157,7 +1176,7 @@ public class Tables extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelImagen2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -1182,142 +1201,144 @@ public class Tables extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel1MousePressed
-        AbrirComanda(panel1, label1, 1);
+        AbrirComanda(1);
     }//GEN-LAST:event_panel1MousePressed
 
     private void panel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel2MousePressed
-        AbrirComanda(panel2, label2, 2);
+        AbrirComanda(2);
     }//GEN-LAST:event_panel2MousePressed
 
     private void panel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel3MousePressed
-        AbrirComanda(panel3, label3, 3);
+        AbrirComanda(3);
     }//GEN-LAST:event_panel3MousePressed
 
     private void panel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel4MousePressed
-        AbrirComanda(panel4, label4, 4);
+        AbrirComanda(4);
     }//GEN-LAST:event_panel4MousePressed
 
     private void panel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel5MousePressed
-        AbrirComanda(panel5, label5, 5);
+        AbrirComanda(5);
     }//GEN-LAST:event_panel5MousePressed
 
     private void panel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel6MousePressed
-        AbrirComanda(panel6, label6, 6);
+        AbrirComanda(6);
     }//GEN-LAST:event_panel6MousePressed
 
     private void panel11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel11MousePressed
-        AbrirComanda(panel11, label11, 11);
+        AbrirComanda(11);
     }//GEN-LAST:event_panel11MousePressed
 
     private void panel16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel16MousePressed
-        AbrirComanda(panel16, label16, 16);
+        AbrirComanda(16);
     }//GEN-LAST:event_panel16MousePressed
 
     private void panel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel8MousePressed
-        AbrirComanda(panel8, label8, 8);
+        AbrirComanda(8);
     }//GEN-LAST:event_panel8MousePressed
 
     private void panel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel7MousePressed
-        AbrirComanda(panel7, label7, 7);
+        AbrirComanda(7);
     }//GEN-LAST:event_panel7MousePressed
 
     private void panel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel9MousePressed
-        AbrirComanda(panel9, label9, 9);
+        AbrirComanda(9);
     }//GEN-LAST:event_panel9MousePressed
 
     private void panel12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel12MousePressed
-        AbrirComanda(panel12, label12, 12);
+        AbrirComanda(12);
     }//GEN-LAST:event_panel12MousePressed
 
     private void panel13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel13MousePressed
-        AbrirComanda(panel13, label13, 13);
+        AbrirComanda(13);
     }//GEN-LAST:event_panel13MousePressed
 
     private void panel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel10MousePressed
-        AbrirComanda(panel10, label10, 10);
+        AbrirComanda(10);
     }//GEN-LAST:event_panel10MousePressed
 
     private void panel14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel14MousePressed
-        AbrirComanda(panel14, label14, 14);
+        AbrirComanda(14);
     }//GEN-LAST:event_panel14MousePressed
 
     private void panel15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel15MousePressed
-        AbrirComanda(panel15, label15, 15);
+        AbrirComanda(15);
     }//GEN-LAST:event_panel15MousePressed
 
     private void panel17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel17MousePressed
-        AbrirComanda(panel17, label17, 17);
+        AbrirComanda(17);
     }//GEN-LAST:event_panel17MousePressed
 
     private void panel18MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel18MousePressed
-        AbrirComanda(panel18, label18, 18);
+        AbrirComanda(18);
     }//GEN-LAST:event_panel18MousePressed
 
     private void panel19MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel19MousePressed
-        AbrirComanda(panel19, label19, 19);
+        AbrirComanda(19);
     }//GEN-LAST:event_panel19MousePressed
 
     private void panel20MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel20MousePressed
-        AbrirComanda(panel20, label20, 20);
+        AbrirComanda(20);
     }//GEN-LAST:event_panel20MousePressed
 
     private void panel21MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel21MousePressed
-        AbrirComanda(panel21, label21, 21);
+        AbrirComanda(21);
     }//GEN-LAST:event_panel21MousePressed
 
     private void panel22MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel22MousePressed
-        AbrirComanda(panel22, label22, 22);
+        AbrirComanda(22);
     }//GEN-LAST:event_panel22MousePressed
 
     private void panel23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel23MousePressed
-        AbrirComanda(panel23, label23, 23);
+        AbrirComanda(23);
     }//GEN-LAST:event_panel23MousePressed
 
     private void panel24MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel24MousePressed
-        AbrirComanda(panel24, label24, 24);
+        AbrirComanda(24);
     }//GEN-LAST:event_panel24MousePressed
 
     private void panel25MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel25MousePressed
-        AbrirComanda(panel25, label25, 25);
+        AbrirComanda(25);
     }//GEN-LAST:event_panel25MousePressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        CerrarSesion();
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton6KeyPressed
-        Eventos(evt);
+
     }//GEN-LAST:event_jButton6KeyPressed
 
+    private void panel26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel26MousePressed
+        AbrirComanda(26);
+    }//GEN-LAST:event_panel26MousePressed
+
     private void panel27MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel27MousePressed
-        // TODO add your handling code here:
+        AbrirComanda(27);
     }//GEN-LAST:event_panel27MousePressed
 
     private void panel28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel28MousePressed
-        // TODO add your handling code here:
+        AbrirComanda(28);
     }//GEN-LAST:event_panel28MousePressed
 
     private void panel29MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel29MousePressed
-        // TODO add your handling code here:
+        AbrirComanda(29);
     }//GEN-LAST:event_panel29MousePressed
 
-    private void panel31MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel31MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panel31MousePressed
+    private void panel30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel30MousePressed
+        AbrirComanda(30);
+    }//GEN-LAST:event_panel30MousePressed
 
-    private void panel32MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel32MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panel32MousePressed
+    private void label12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label12MousePressed
+        AbrirComanda(12);
+    }//GEN-LAST:event_label12MousePressed
+
+    private void label15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label15MousePressed
+        AbrirComanda(15);
+    }//GEN-LAST:event_label15MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label10;
@@ -1343,8 +1364,6 @@ public class Tables extends javax.swing.JFrame {
     private javax.swing.JLabel label29;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label30;
-    private javax.swing.JLabel label31;
-    private javax.swing.JLabel label32;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
     private javax.swing.JLabel label6;
@@ -1352,8 +1371,6 @@ public class Tables extends javax.swing.JFrame {
     private javax.swing.JLabel label8;
     private javax.swing.JLabel label9;
     private javax.swing.JLabel labelImagen;
-    private javax.swing.JLabel labelImagen1;
-    private javax.swing.JLabel labelImagen2;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel10;
     private javax.swing.JPanel panel11;
@@ -1378,8 +1395,6 @@ public class Tables extends javax.swing.JFrame {
     private javax.swing.JPanel panel29;
     private javax.swing.JPanel panel3;
     private javax.swing.JPanel panel30;
-    private javax.swing.JPanel panel31;
-    private javax.swing.JPanel panel32;
     private javax.swing.JPanel panel4;
     private javax.swing.JPanel panel5;
     private javax.swing.JPanel panel6;
@@ -1387,5 +1402,87 @@ public class Tables extends javax.swing.JFrame {
     private javax.swing.JPanel panel8;
     private javax.swing.JPanel panel9;
     // End of variables declaration//GEN-END:variables
+   
+    public void InitData(){
+        GuiUtils gu = new GuiUtils();
+        labelImagen.setIcon(gu.ImageLabel("/Imagenes/logoriginal.png", labelImagen));
+        setTables();
+        getTables();
+        gu.OpenJFrame(this);
+    }
+
+    private void AbrirComanda(int table) {
+        System.out.println("Mesa = " + table);
+        Command tc = new Command(this, true);
+        
+        if (!tables.get(table - 1).isActive()) {
+            TableSelectUser tsu = new TableSelectUser(this, true);
+            tsu.InitData(tables.get(table - 1).getTable());
+            if (tsu.isState()) {
+                setTables();
+                getTables();
+                tc.InitData(table);
+            }
+        }else{
+            System.out.println("Mesa ocupada");
+            tc.InitData(table);
+            getTables();
+        }
+    }
+    
+    private void getTables(){
+        List<TablesDto> result = st.getTablesActive();
+        if (result != null) {
+            for (TablesDto data : result) {
+                int pos = data.getTable() - 1;
+                if (!data.isClose()) {
+                    tables.get(pos).setId(data.getId());
+                    tables.get(pos).setActive(true);
+                    tables.get(pos).setUser(data.getUser());
+                    tables.get(pos).getLabel().setForeground(Color.YELLOW);
+                }else{
+                    tables.get(pos).setId(data.getId());
+                    tables.get(pos).setActive(true);
+                    tables.get(pos).setUser(data.getUser());
+                    tables.get(pos).getLabel().setForeground(Color.red);
+                }
+            }
+        }else{
+            System.out.println("InitData. Sin datos");
+        }
+    }
+    
+    private void setTables(){
+        tables.add(new TablesDto(0, panel1, label1,1,false, null));
+        tables.add(new TablesDto(0, panel2, label2,2,false, null));
+        tables.add(new TablesDto(0, panel3, label3,3,false, null));
+        tables.add(new TablesDto(0, panel4, label4,4,false, null));
+        tables.add(new TablesDto(0, panel5, label5,5,false, null));
+        tables.add(new TablesDto(0, panel6, label6,6,false, null));
+        tables.add(new TablesDto(0, panel7, label7,7,false, null));
+        tables.add(new TablesDto(0, panel8, label8,8,false, null));
+        tables.add(new TablesDto(0, panel9, label9,9,false, null));
+        tables.add(new TablesDto(0, panel10, label10,10,false, null));
+        tables.add(new TablesDto(0, panel11, label11,11,false, null));
+        tables.add(new TablesDto(0, panel12, label12,12,false, null));
+        tables.add(new TablesDto(0, panel13, label13,13,false, null));
+        tables.add(new TablesDto(0, panel14, label14,14,false, null));
+        tables.add(new TablesDto(0, panel15, label15,15,false, null));
+        tables.add(new TablesDto(0, panel16, label16,16,false, null));
+        tables.add(new TablesDto(0, panel17, label17,17,false, null));
+        tables.add(new TablesDto(0, panel18, label18,18,false, null));
+        tables.add(new TablesDto(0, panel19, label19,19,false, null));
+        tables.add(new TablesDto(0, panel20, label20,20,false, null));
+        tables.add(new TablesDto(0, panel21, label21,21,false, null));
+        tables.add(new TablesDto(0, panel22, label22,22,false, null));
+        tables.add(new TablesDto(0, panel23, label23,23,false, null));
+        tables.add(new TablesDto(0, panel24, label24,24,false, null));
+        tables.add(new TablesDto(0, panel25, label25,25,false, null));
+        tables.add(new TablesDto(0, panel26, label26,26,false, null));
+        tables.add(new TablesDto(0, panel27, label27,27,false, null));
+        tables.add(new TablesDto(0, panel28, label28,28,false, null));
+        tables.add(new TablesDto(0, panel29, label29,29,false, null));
+        tables.add(new TablesDto(0, panel30, label30,30,false, null));
+    }
 
 }

@@ -172,8 +172,7 @@ public class MessageUser extends javax.swing.JDialog {
         if(message.getType() > MESSAGE_CONFIRM){
             buttonCancel.setVisible(false);
         }
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        gu.OpenJDialog(this);
     }
     
     public Boolean getSelection(){

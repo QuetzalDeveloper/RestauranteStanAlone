@@ -426,15 +426,13 @@ public class Food extends javax.swing.JFrame {
     }
     
     public void InitData() {
-        this.dispose();
-        this.setUndecorated(true);
-        this.setLocationRelativeTo(null);
+        GuiUtils gu = new GuiUtils();
         List<TypeFoodDto> type = ms.getTypeFood();
         comboTipo.addItem("Selecciona...");
         for (TypeFoodDto data : type) {
             comboTipo.addItem(data.getNombreTipo());
         }
-        this.setVisible(true);
+        gu.OpenJFrame(this);
     }
 
 }

@@ -5,15 +5,30 @@
 
 package Front;
 
+import static Constants.MessageConstants.MESSAGE_ERROR;
+import DTO.MessageDto;
+import DTO.UserDto;
+import DTO.UserRequestDto;
+import DTO.VentaDto;
+import Services.TablesService;
+import Services.UserService;
+import Utils.DatesFormat;
+import Utils.GuiUtils;
+import java.util.List;
+
 /**
- * @file SelectUser.java
+ * @file TableSelectUser.java
  * @author Diego Hernandez Cote
  * @owner QuetzalApps
- * @date 21 mar. 2023
+ * @date 22 mar. 2023
  */
-public class SelectUser extends javax.swing.JDialog {
+public class TableSelectUser extends javax.swing.JDialog {
+    
+    private boolean state = false;
+    private int table;
+    private List<UserDto> result = null;
 
-    public SelectUser(java.awt.Frame parent, boolean modal) {
+    public TableSelectUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -98,7 +113,7 @@ public class SelectUser extends javax.swing.JDialog {
                         .addComponent(textPass))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -113,7 +128,7 @@ public class SelectUser extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textPass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,27 +167,28 @@ public class SelectUser extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPassKeyPressed
-        Eventos(evt);
+
     }//GEN-LAST:event_textPassKeyPressed
 
     private void textPasscomboMeseroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasscomboMeseroKeyTyped
-        Eventos(evt);
+
     }//GEN-LAST:event_textPasscomboMeseroKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Regresar();
+        state = false;
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Verificar();
+        SelectUser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboMeseroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboMeseroKeyPressed
-        Eventos(evt);
+
     }//GEN-LAST:event_comboMeseroKeyPressed
 
     private void comboMeseroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboMeseroKeyTyped
-        Eventos(evt);
+    
     }//GEN-LAST:event_comboMeseroKeyTyped
 
 
@@ -187,4 +203,47 @@ public class SelectUser extends javax.swing.JDialog {
     private javax.swing.JPasswordField textPass;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void SaveInitSale(){
+        TablesService ts = new TablesService();
+        DatesFormat df = new DatesFormat();
+        VentaDto venta = new VentaDto(
+                table,
+                result.get(comboMesero.getSelectedIndex()).getAccount(),
+                df.getTodayDateTime(),
+                false,
+                true
+        );
+        if(ts.InsertInitSale(venta)){
+            System.out.println("Venta inicial guardada");
+            this.dispose();
+        }else{
+            System.out.println("Fallo en el guadado inicial de la venta");
+        }
+    }
+    
+    public void InitData(int table){
+        GuiUtils gu = new GuiUtils();
+        UserService us = new UserService();
+        this.table = table;
+        result = us.GetUsersActive();
+        for(UserDto data : result){
+            comboMesero.addItem(data.getAccount() + " - " + data.getName());
+        }
+        gu.OpenJDialog(this);
+    }
+    
+    private void SelectUser(){
+        if(textPass.getText().equals(result.get(comboMesero.getSelectedIndex()).getPassword())){
+            state = true;
+            SaveInitSale();
+        }else{
+            System.out.println("Erroneo");
+        }
+    }
+
+    public boolean isState() {
+        return state;
+    }
+  
 }

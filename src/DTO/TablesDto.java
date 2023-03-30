@@ -18,8 +18,25 @@ public class TablesDto {
 
     private JPanel panel;
     private JLabel label;
-    private Integer mesa;
+    private Integer table;
+    private boolean close;
+    private String user;
+    private int id;
+    private boolean active;
 
+    
+    public TablesDto(){
+        
+    }
+
+    public TablesDto(int id, JPanel panel, JLabel label, Integer table, boolean active, String user) {
+        this.id = id;
+        this.panel = panel;
+        this.label = label;
+        this.table = table;
+        this.active = active;
+    }
+       
     public JPanel getPanel() {
         return panel;
     }
@@ -36,13 +53,44 @@ public class TablesDto {
         this.label = label;
     }
 
-    public Integer getMesa() {
-        return mesa;
+    public Integer getTable() {
+        return table;
     }
 
-    public void setMesa(Integer mesa) {
-        this.mesa = mesa;
+    public void setTable(Integer table) {
+        this.table = table;
     }
-    
-    
+
+    public boolean isClose() {
+        return close;
+    }
+
+    public void setClose(boolean close) {
+        this.close = close;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+        
 }

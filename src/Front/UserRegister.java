@@ -280,10 +280,8 @@ public class UserRegister extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void InitNewUser() {
-        this.dispose();
-        this.setUndecorated(true);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        GuiUtils gu = new GuiUtils();
+        gu.OpenJDialog(this);
     }
     
     public void InitUpdateUser(UserDto user){
