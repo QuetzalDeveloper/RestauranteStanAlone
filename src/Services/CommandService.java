@@ -62,6 +62,11 @@ public class CommandService {
         return true;
     }
     
+    /**
+     * Delete a item from the list of product on sale
+     * @param id
+     * @return True if is Ok, false otherwise
+     */
     public boolean DeleteMenuSale(int id){
         DBConnection dbcon = new DBConnection();
         try{
@@ -240,6 +245,11 @@ public class CommandService {
         return -1;
     }
 
+    /**
+     * Calculate the subtotal from the price of the list of products in the table sale
+     * @param product
+     * @return Double. The subtotal of the products
+     */
     public double getSubTotal(List<MenuSaleDto> product) {
        double result = 0.0;
        for(MenuSaleDto data : product){

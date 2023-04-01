@@ -1220,7 +1220,7 @@ public class Command extends javax.swing.JDialog {
             sale.setTotal(sale.getSubTotal() - sale.getDiscount());
             sale.setClose(true);
             cs.CloseSale(sale);
-            //gu.PrintTicketSale(commandData, product, sale);
+            //gu.PrintTicketSale(product, sale);
             this.dispose();
         }else{
             md.setTitle("Cancelado");

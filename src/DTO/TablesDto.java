@@ -29,7 +29,7 @@ public class TablesDto {
         
     }
 
-    public TablesDto(int id, JPanel panel, JLabel label, Integer table, boolean active, String user) {
+    public TablesDto(int id, JPanel panel, JLabel label, Integer table, boolean active, boolean close, String user) {
         this.id = id;
         this.panel = panel;
         this.label = label;

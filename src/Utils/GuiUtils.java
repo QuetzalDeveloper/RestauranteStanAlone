@@ -116,7 +116,7 @@ public class GuiUtils {
     }
     
     
-    public boolean PrintTicketSale(CommandInitDto data, List<MenuSaleDto> product, VentaDto sale) {
+    public boolean PrintTicketSale(List<MenuSaleDto> product, VentaDto sale) {
         try {
             System.out.println("RUTA = " + System.getProperty("user.dir"));
             //String logo = "C:\\Program Files\\ElManjar\\logoticket.jpg";
@@ -163,9 +163,9 @@ public class GuiUtils {
                     expected.writeBytes("Chicoloapan de Juarez. CP.56370 \n".getBytes());
                     expected.writeBytes("       Estado de Mexico.        \n\n".getBytes());
                     expected.writeBytes((df.getTodayTextFormat()+"\n").getBytes());
-                    expected.writeBytes((RowLimit("Folio: " + String.valueOf(data.getIdSale()))+"\n").getBytes());
-                    expected.writeBytes((RowLimit("Mesa: " + String.valueOf(data.getTable()))+"\n").getBytes());
-                    expected.writeBytes((RowLimit("Mesero: " + data.getUserName())+"\n").getBytes());
+                    expected.writeBytes((RowLimit("Folio: " + String.valueOf(sale.getId()))+"\n").getBytes());
+                    expected.writeBytes((RowLimit("Mesa: " + String.valueOf(sale.getTable()))+"\n").getBytes());
+                    expected.writeBytes((RowLimit("Mesero: " + sale.getIdUser())+"\n").getBytes());
                     expected.writeBytes("--------------------------------\n".getBytes());
                     
                     for(MenuSaleDto food : product){
@@ -212,7 +212,7 @@ public class GuiUtils {
         }
     }
     
-    private String PriceToString(Double value){
+    public String PriceToString(Double value){
         return String.format("%.2f", value);
     }
 }
